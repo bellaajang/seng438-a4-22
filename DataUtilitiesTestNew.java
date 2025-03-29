@@ -14,7 +14,7 @@ import org.jfree.data.Values2D;
 
 
 
-public class DataUtilitiesTestNew extends DataUtilities {
+public class RDataUtilitiesTestNew extends DataUtilities {
 
 	private Mockery mockingContext;
 	private Mockery mockingContext1;
@@ -1122,7 +1122,7 @@ public class DataUtilitiesTestNew extends DataUtilities {
     	    one(values).getValue(1, 1);
     	    will(returnValue(null));
     	}});
-    	int[] x = {2};
+    	int[] x = {1};
     	try {
         	DataUtilities.calculateColumnTotal(values, 1, x );
             assertTrue(true);
@@ -1194,7 +1194,7 @@ public class DataUtilitiesTestNew extends DataUtilities {
     	    one(values).getValue(1, 1);
     	    will(returnValue(null));
     	}});
-    	int[] x = {2};
+    	int[] x = {1};
     	try {
         	DataUtilities.calculateRowTotal(values, 1, x);
             assertTrue(true);
@@ -1205,6 +1205,184 @@ public class DataUtilitiesTestNew extends DataUtilities {
         
     }
     
+    @Test
+    public void calc_colmtotal_154() {
+    	
+    	mockingContext = new Mockery();
+
+    	values = mockingContext.mock(Values2D.class);
+    	mockingContext.checking(new Expectations() {{
+    	    one(values).getColumnCount();
+    	    will(returnValue(2));
+
+    	    one(values).getRowCount();
+    	    will(returnValue(2));
+
+    	    one(values).getValue(0, 0);
+    	    will(returnValue(1.0));
+
+    	    one(values).getValue(0, 1);
+    	    will(returnValue(2.0));
+
+    	    one(values).getValue(1, 0);
+    	    will(returnValue(3.0));
+
+    	    one(values).getValue(1, 1);
+    	    will(returnValue(null));
+    	}});
+    	int[] x = {1};
+    	try {
+        	DataUtilities.calculateColumnTotal(values, 1, x);
+            assertTrue(true);
+        } catch (IndexOutOfBoundsException e) {
+            assertEquals(1,2);
+        }
+        
+        
+    }
+    @Test
+    public void calc_colmtotal_1542() {
+    	
+    	mockingContext = new Mockery();
+
+    	values = mockingContext.mock(Values2D.class);
+    	mockingContext.checking(new Expectations() {{
+    	    one(values).getColumnCount();
+    	    will(returnValue(2));
+
+    	    one(values).getRowCount();
+    	    will(returnValue(2));
+
+    	    one(values).getValue(0, 0);
+    	    will(returnValue(1.0));
+
+    	    one(values).getValue(0, 1);
+    	    will(returnValue(2.0));
+
+    	    one(values).getValue(1, 0);
+    	    will(returnValue(3.0));
+
+    	    one(values).getValue(1, 1);
+    	    will(returnValue(2.0));
+    	    one(values).getValue(2, 1);
+    	   
+    	}});
+    	int[] x = {0,1,2,3};
+    	
+        	assertEquals(4.0,DataUtilities.calculateColumnTotal(values, 1, x),0.000001);
+            
+        
+        
+        
+    }
+    
+    @Test
+    public void calc_rowtotal_205() {
+    	
+    	mockingContext = new Mockery();
+
+    	values = mockingContext.mock(Values2D.class);
+    	mockingContext.checking(new Expectations() {{
+    	    one(values).getColumnCount();
+    	    will(returnValue(2));
+
+    	    one(values).getRowCount();
+    	    will(returnValue(2));
+
+    	    one(values).getValue(0, 0);
+    	    will(returnValue(1.0));
+
+    	    one(values).getValue(0, 1);
+    	    will(returnValue(2.0));
+
+    	    one(values).getValue(1, 0);
+    	    will(returnValue(3.0));
+
+    	    one(values).getValue(1, 1);
+    	    will(returnValue(null));
+    	}});
+    	int[] x = {1};
+    	try {
+        	DataUtilities.calculateRowTotal(values, 1, x);
+            assertTrue(true);
+        } catch (IndexOutOfBoundsException e) {
+            assertEquals(1,2);
+        }
+        
+        
+    }
+    
+    
+    @Test
+    public void calc_colmtotal_rowmcnt() {
+    	
+    	mockingContext = new Mockery();
+
+    	values = mockingContext.mock(Values2D.class);
+    	mockingContext.checking(new Expectations() {{
+    	    one(values).getColumnCount();
+    	    will(returnValue(2));
+
+    	    one(values).getRowCount();
+    	    will(returnValue(2));
+
+    	    one(values).getValue(0, 0);
+    	    will(returnValue(1.0));
+
+    	    one(values).getValue(0, 1);
+    	    will(returnValue(2.0));
+
+    	    one(values).getValue(1, 0);
+    	    will(returnValue(3.0));
+
+    	    one(values).getValue(1, 1);
+    	    will(returnValue(null));
+    	}});
+    	int[] x = {0,1};
+    	try {
+        	DataUtilities.calculateColumnTotal(values, 1, x);
+            assertTrue(true);
+        } catch (IndexOutOfBoundsException e) {
+            assertEquals(1,2);
+        }
+        
+        
+    }
+    @Test
+    public void calc_rowmtotal_colmcnt() {
+    	
+    	mockingContext = new Mockery();
+
+    	values = mockingContext.mock(Values2D.class);
+    	mockingContext.checking(new Expectations() {{
+    	    one(values).getColumnCount();
+    	    will(returnValue(2));
+
+    	    one(values).getRowCount();
+    	    will(returnValue(2));
+
+    	    one(values).getValue(0, 0);
+    	    will(returnValue(1.0));
+
+    	    one(values).getValue(0, 1);
+    	    will(returnValue(2.0));
+
+    	    one(values).getValue(1, 0);
+    	    will(returnValue(3.0));
+
+    	    one(values).getValue(1, 1);
+    	    will(returnValue(null));
+    	}});
+    	int[] x = {0,1};
+    	try {
+        	DataUtilities.calculateRowTotal(values, 1, x);
+            assertTrue(true);
+        } catch (IndexOutOfBoundsException e) {
+            assertEquals(1,2);
+        }
+        
+        
+    }
     
     @Ignore
     @Test
